@@ -1,4 +1,8 @@
 from flask import Flask, render_template
+import os
+from pathlib import Path
+parent_path = Path.cwd()
+path_ = os.path.join(parent_path, "GazeTracking\\example.py")
 app = Flask(__name__)
 
 @app.route('/')
@@ -7,7 +11,7 @@ def index():
 
 @app.route('/my-link/')
 def my_link():
-  file = open(r'/Users/jwong1209qaz/Desktop/IEEE/Productivity-Project/GazeTracking/example.py', 'r').read()
+  file = open(path_, 'r').read()
   return exec(file)
 
 if __name__ == '__main__':
