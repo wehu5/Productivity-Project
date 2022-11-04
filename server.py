@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import os
 from pathlib import Path
 parent_path = Path.cwd()
-path_ = os.path.join(parent_path, "GazeTracking\\example.py")
+path_ = os.path.join(parent_path, "GazeTracking/example.py")
 app = Flask(__name__)
 
 @app.route('/')
