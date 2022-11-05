@@ -23,6 +23,7 @@ frame_width = int(camera.get(3))
 frame_counter = 0
 
 fourcc = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
+start = False
 
 def gen_frames():  # generate frame by frame from camera
     print('gen_frames')
@@ -43,6 +44,10 @@ def gen_frames():  # generate frame by frame from camera
             text = "Looking right"
           elif gaze.is_left():
             text = "Looking left"
+          elif gaze.is_up():
+            text = "Looking Up"
+          elif gaze.is_down():
+            text = "Looking Down"
           elif gaze.is_center():
             text = "Looking center"
 
@@ -67,9 +72,7 @@ def index():
 
 @app.route('/my-link/')
 def my_link():
-  webcam = cv2.VideoCapture(0)
-  _, frame = webcam.read()
-  return None
+  return
 
 @app.route('/video_feed')
 def video_feed():
