@@ -23,6 +23,7 @@ frame_width = int(camera.get(3))
 frame_counter = 0
 
 fourcc = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
+start = False
 
 
 def gen_frames():  # generate frame by frame from camera
@@ -44,6 +45,10 @@ def gen_frames():  # generate frame by frame from camera
             text = "Looking right"
           elif gaze.is_left():
             text = "Looking left"
+          elif gaze.is_up():
+            text = "Looking Up"
+          elif gaze.is_down():
+            text = "Looking Down"
           elif gaze.is_center():
             text = "Looking center"
 
