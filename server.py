@@ -24,6 +24,7 @@ frame_counter = 0
 
 fourcc = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
 
+
 def gen_frames():  # generate frame by frame from camera
     print('gen_frames')
     while True:
@@ -67,14 +68,15 @@ def index():
 
 @app.route('/my-link/')
 def my_link():
-  webcam = cv2.VideoCapture(0)
-  _, frame = webcam.read()
-  return None
+  #webcam = cv2.VideoCapture(0)
+  #_, frame = webcam.read()
+  return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/video_feed')
 def video_feed():
+  print("Hello")
     # Video streaming route. Put this in the src attribute of an img tag
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
   app.run(debug=True)
