@@ -99,12 +99,12 @@ class GazeTracking(object):
     def is_up(self):
         """Returns true if the user is looking to the top"""
         if self.pupils_located:
-            return self.vertical_ratio() >= 0.4
+            return self.vertical_ratio() <= 0.4
 
     def is_down(self):
         """Returns true if the user is looking to the down"""
         if self.pupils_located:
-            return self.vertical_ratio() <= 0.8
+            return self.vertical_ratio() >= 0.6
 
     def is_right(self):
         """Returns true if the user is looking to the right"""
@@ -125,7 +125,7 @@ class GazeTracking(object):
         """Returns true if the user closes his eyes"""
         if self.pupils_located:
             blinking_ratio = (self.eye_left.blinking + self.eye_right.blinking) / 2
-            return blinking_ratio > 5
+            return blinking_ratio > 3
 
     def annotated_frame(self):
         """Returns the main frame with pupils highlighted"""
