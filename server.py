@@ -70,11 +70,12 @@ def index():
 def my_link():
   #webcam = cv2.VideoCapture(0)
   #_, frame = webcam.read()
-  return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+  return render_template('my-link.html')
 
 @app.route('/video_feed')
 def video_feed():
-  print("Hello")
+  return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+  #print("Hello")
     # Video streaming route. Put this in the src attribute of an img tag
     #return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
