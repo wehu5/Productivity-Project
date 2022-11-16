@@ -5,10 +5,15 @@
     <meta charset=utf-8> </head>
     <body>
         <h1>Pi Video Surveillance</h1>
-        <img src="{{ url_for('video_feed') }}">
+        <p style="text-align:center;"><img src="{{ url_for('video_feed') }}"></p>
         <form action="/">
             <input type="submit" value="Close" />
         </form>
-        
+
+        <p>Counting blinks: {{ bc }}</p>
+        <p>Counting right looks: {{ cr }}</p>
+        <p>Counting left looks: {{ cl }}</p>
+        <p>Counting  looks: {{ cu }}</p>
+        <p>Counting right looks: {{ cd }}</p>
 
     </body>

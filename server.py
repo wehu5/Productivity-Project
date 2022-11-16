@@ -9,6 +9,7 @@ import cv2
 parent_path = Path.cwd()
 path_ = os.path.join(parent_path, "GazeTracking/example.py")
 gaze = GazeTracking()
+blinkCount, countRight, countLeft, countUp, countDown = 0, 0, 0, 0, 0
 
 ### start
 start = False
@@ -22,6 +23,7 @@ def gen_frames():  # generate frame by frame from camera
     frame_height = int(camera.get(4))
     frame_width = int(camera.get(3))
     frame_counter = 0
+    global blinkCount, countRight, countLeft, countUp, countDown
     while start:
         # Capture frame-by-frame
       success, frame = camera.read()  # read the camera frame
@@ -34,14 +36,19 @@ def gen_frames():  # generate frame by frame from camera
         text = ""
 
       if gaze.is_blinking():
+        blinkCount += 1
         text = "Blinking"
       elif gaze.is_right():
+        countRight += 1
         text = "Looking right"
       elif gaze.is_left():
+        countLeft += 1
         text = "Looking left"
       elif gaze.is_up():
+        countUp += 1
         text = "Looking Up"
       elif gaze.is_down():
+        countDown += 1
         text = "Looking Down"
       elif gaze.is_center():
         text = "Looking center"
@@ -72,9 +79,9 @@ def index():
 def my_link():
   #webcam = cv2.VideoCapture(0)
   #_, frame = webcam.read()
-  global start
+  global start, blinkCount, countRight, countLeft, countUp, countDown
   start = True
-  return render_template('my-link.html')
+  return render_template('my-link.html', bc=blinkCount, cr=countRight, cl=countLeft, cu=countUp, cd=countDown)
 
 @app.route('/video_feed')
 def video_feed():
