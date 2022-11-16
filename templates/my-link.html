@@ -1,19 +1,28 @@
 <!doctype html>
 
 
-<head><title>Test</title> 
-    <meta charset=utf-8> </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Focus</title>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+      <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet">     
+      <link rel="stylesheet" href="./style.css">
+  </head>
     <body>
-        <h1>Pi Video Surveillance</h1>
         <p style="text-align:center;"><img src="{{ url_for('video_feed') }}"></p>
         <form action="/">
             <input type="submit" value="Close" />
         </form>
 
-        <p>Counting blinks: {{ bc }}</p>
-        <p>Counting right looks: {{ cr }}</p>
-        <p>Counting left looks: {{ cl }}</p>
-        <p>Counting  looks: {{ cu }}</p>
-        <p>Counting right looks: {{ cd }}</p>
+        <body>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8  offset-lg-2">
+                        <div hx-get="/counts" hx-trigger="every 0.1s"></div>
+                        <h3 class="mt-5">Focusing</h3>
+                    </div>
+                </div>
+            </div>
+        </body>
 
     </body>

@@ -83,7 +83,14 @@ def my_link():
   #_, frame = webcam.read()
   global start, blinkCount, countRight, countLeft, countUp, countDown
   start = True
-  return render_template('my-link.html', bc=blinkCount, cr=countRight, cl=countLeft, cu=countUp, cd=countDown)
+  #return render_template('my-link.html')
+  return render_template('my-link.html')
+
+@app.route('/counts')
+def counts():
+  global blinkCount, countRight, countLeft, countUp, countDown
+  c = f'<p>Blink Count: {blinkCount}</p>\n<p>Right Count: {countRight}</p>\n<p>Left Count: {countLeft}</p>\n<p>Up Count: {countUp}</p>\n<p>Down Count: {countDown}</p>'
+  return c
 
 @app.route('/video_feed')
 def video_feed():
