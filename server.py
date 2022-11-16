@@ -33,18 +33,24 @@ def gen_frames():  # generate frame by frame from camera
         frame = cv2.flip(frame, 1)
         text = ""
 
-      if gaze.is_blinking():
-        text = "Blinking"
-      elif gaze.is_right():
+      if gaze.is_right():
+        print("Right")
         text = "Looking right"
       elif gaze.is_left():
+        print("Left")
         text = "Looking left"
       elif gaze.is_up():
+        print("Up")
         text = "Looking Up"
       elif gaze.is_down():
+        print("Down")
         text = "Looking Down"
       elif gaze.is_center():
+        print("Center")
         text = "Looking center"
+
+      if gaze.is_blinking():
+        text = "Blinking"
 
       cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
 
