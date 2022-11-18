@@ -24,7 +24,10 @@ class GazeTracking(object):
 
         # _predictor is used to get facial landmarks of a given face
         cwd = os.path.abspath(os.path.dirname(__file__))
-        model_path = os.path.abspath(os.path.join(cwd, "trained_models/shape_predictor_68_face_landmarks.dat"))
+        # used model from 
+        # Álvarez Casado C. & Bordallo López M. 
+        # "Real-time face alignment: evaluation methods, training strategies and implementation optimization SPRINGER JOURNAL OF REAL-TIME IMAGE PROCESSING (2021)
+        model_path = os.path.abspath(os.path.join(cwd, "trained_models/shape_predictor_68_face_landmarks_GTX.dat"))
         self._predictor = dlib.shape_predictor(model_path)
 
     @property
@@ -99,12 +102,12 @@ class GazeTracking(object):
     def is_up(self):
         """Returns true if the user is looking to the top"""
         if self.pupils_located:
-            return self.vertical_ratio() <= 0.4
+            return self.vertical_ratio() <= 0.48
 
     def is_down(self):
         """Returns true if the user is looking to the down"""
         if self.pupils_located:
-            return self.vertical_ratio() >= 0.6
+            return self.vertical_ratio() >= 0.65
 
     def is_right(self):
         """Returns true if the user is looking to the right"""
@@ -114,7 +117,7 @@ class GazeTracking(object):
     def is_left(self):
         """Returns true if the user is looking to the left"""
         if self.pupils_located:
-            return self.horizontal_ratio() >= 0.65
+            return self.horizontal_ratio() >= 0.70
 
     def is_center(self):
         """Returns true if the user is looking to the center"""
