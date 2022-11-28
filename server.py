@@ -11,6 +11,8 @@ path_ = os.path.join(parent_path, "GazeTracking/example.py")
 gaze = GazeTracking()
 blinkCount, countRight, countLeft, countUp, countDown = 0, 0, 0, 0, 0
 
+##Path = 
+
 ### start
 start = False
 
@@ -38,23 +40,42 @@ def gen_frames():  # generate frame by frame from camera
       if gaze.is_blinking():
         blinkCount += 1
         text = "Blinking"
+        with open("input.txt", "r+") as f:
+            data = f.read()
+            f.seek(0)
+            f.write('1')
+            f.truncate()
       else: 
         if gaze.is_right():
           countRight += 1
-          text = "Looking right"
+          text = "H: Right"
+          with open("input.txt", "r+") as f:
+            data = f.read()
+            f.seek(0)
+            f.write('2')
+            f.truncate()
         elif gaze.is_left():
           countLeft += 1
-          text = "Looking left"
+          text = "H: Left"
+          with open("input.txt", "r+") as f:
+            data = f.read()
+            f.seek(0)
+            f.write('2')
+            f.truncate()
         elif gaze.is_center():
-          print("Center")
-          text = "Looking center"
+          text = "H: Center"
+          with open("input.txt", "r+") as f:
+            data = f.read()
+            f.seek(0)
+            f.write('1')
+            f.truncate()
 
         if gaze.is_up():
           countUp += 1
-          text = text + " | Up"
+          text = text + " | V: Up"
         elif gaze.is_down():
           countDown += 1
-          text = text + " | Down"
+          text = text + " | V: Down"
 
       cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
 
